@@ -1,36 +1,41 @@
 # Midnight Prototype (C++ Beginner Car Game)
 
-You were right to ask for a runnable `.exe`.
-This repo now includes a **Windows build pipeline** so you can download a packaged `.zip` that contains `midnight_prototype.exe`.
+A super-short **pure C++** beginner project you can compile into an `.exe` and run immediately.
+It is intentionally engine-independent for now (console renderer only) so you learn architecture first.
 
-## Fastest way to get the EXE zip (no coding needed)
-1. Push this repo to GitHub.
-2. Open **Actions** tab.
-3. Run workflow: **Build Windows EXE**.
-4. After it finishes, download artifact: `midnight_prototype_win`.
-5. Extract `midnight_prototype_win.zip` and run `midnight_prototype.exe`.
+## What this teaches
+- clean class-based game structure (`Game` class)
+- game loop fundamentals
+- input/update/render separation
+- simple spawning + collision systems
+- score/combo loop for replayability
 
-## Local Windows build (if you want to build yourself)
-Double-click:
-- `build_windows.bat`
-
-It will:
-- compile Release build
-- create `midnight_prototype_win.zip`
-
-## Controls
+## Play loop
+You drive in 3 lanes (`A`) and dodge traffic (`X`).
 - `a` = left
 - `d` = right
 - `s` = stay
 - `q` = quit
 - `r` = restart after crash
 
-## Architecture learning goals
-- class-based game structure (`Game`)
-- input/update/render separation
-- spawn/collision/score/combo systems
-- easy next-step path to later graphics engines
+## Build
+```bash
+cmake -S . -B build
+cmake --build build --config Release
+```
 
-## Current scope
-This is intentionally a pure C++ console prototype so you can learn architecture first.
-Next upgrade: replace renderer with SDL2/raylib while preserving gameplay systems.
+## Run
+- Linux/macOS: `./build/midnight_prototype`
+- Windows: `build\\Release\\midnight_prototype.exe` (or in build root depending generator)
+
+## Zip package (Windows)
+After building release:
+```powershell
+Compress-Archive -Path build\\Release\\* -DestinationPath midnight_prototype_win.zip -Force
+```
+
+## Long-term roadmap to a Midnight Club spiritual successor
+1. Replace console renderer with SDL2/raylib/UE custom module.
+2. Keep gameplay systems (`input/update/scoring`) separate from renderer.
+3. Add data-driven configs (JSON) for physics tuning.
+4. Add checkpoints, AI rivals, and drift scoring.
