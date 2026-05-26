@@ -34,8 +34,3 @@ After building release:
 Compress-Archive -Path build\\Release\\* -DestinationPath midnight_prototype_win.zip -Force
 ```
 
-## Long-term roadmap to a Midnight Club spiritual successor
-1. Replace console renderer with SDL2/raylib/UE custom module.
-2. Keep gameplay systems (`input/update/scoring`) separate from renderer.
-3. Add data-driven configs (JSON) for physics tuning.
-4. Add checkpoints, AI rivals, and drift scoring.
